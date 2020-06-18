@@ -23,6 +23,7 @@ var myLatex = {};
 })();
 
 myLatex.maxblevel = 20;
+myLatex.isMathMode = true;
 
 myLatex.inputToDisplay = () => {
     const selectedList = document.getElementsByClassName("mathSelected")
@@ -46,9 +47,13 @@ myLatex.editContent = ({ string = "", dom = null } = {}) => {
         } else if (dom.classList.contains("statement")) {
             dom.parentNode.dataset.statementText = string
         }
-        dom.textContent = "\\[" + string + "\\]";
+        if(myLatex.isMathMode){
+            dom.textContent = "\\[" + string + "\\]";
+        }else{
+            dom.textContent = string ;
+        }
     }
-    MathJax.typeset();
+    //MathJax.typeset();
 
 }
 myLatex.createNewRowContent = ({ string = "", therow = document.getElementById("mathDisplay").lastElementChild } = {}) => {
@@ -162,7 +167,7 @@ myLatex.createNewRowContent = ({ string = "", therow = document.getElementById("
     } else {
         mathDisplay.insertBefore(newrowContent, therow.nextSibling)
     }
-    MathJax.typeset();
+    // MathJax.typeset();
 }
 
 myLatex.moveDown = () => {
@@ -279,7 +284,7 @@ myLatex.openAllDetails = () => {
         element.setAttribute('open', '')
     }
 }
-myLatex.makeRawAllcontent = () => {
+myLatex.makeAllcontentRaw = () => {
     let rowList = document.getElementsByClassName("rowContent")
     for (let index = 0; index < rowList.length; index++) {
         const row = rowList[index];
@@ -287,4 +292,7 @@ myLatex.makeRawAllcontent = () => {
         row.children[1].textContent = "\\[" + row.dataset.statementText + "\\]"
     }
 
+}
+myLatex.changeEditMode = () =>{
+    myLatex.isMathMode = !myLatex.isMathMode
 }
