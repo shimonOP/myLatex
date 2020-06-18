@@ -168,7 +168,10 @@ myLatex.createNewRowContent = ({ string = "", therow = document.getElementById("
 myLatex.moveDown = () => {
     let selectedList = document.getElementsByClassName("mathSelected");
     if (selectedList.length === 0) {
-
+        let mathDisplay = document.getElementById("mathDisplay")
+        let lastrow = mathDisplay.lastElementChild
+        lastrow.children[0].classList.add('mathSelected')
+        editor.setValue(lastrow.dataset.commandText)
     } else if (selectedList.length === 1) {
         let theContent = selectedList[0]
         if (theContent.classList.contains("command")) {
@@ -251,6 +254,9 @@ myLatex.structureRows = () => {
 myLatex.makeReadOnlyThisPage = () => {
     myLatex.clearEditTools();
     myLatex.structureRows();
+    myLatex.openAllDetails();
+    myLatex.unvisibleDetails();
+    myLatex.makeRawAllcontent();
 }
 myLatex.unvisibleDetails = () => {
     let summaryList = document.getElementsByTagName("summary")
