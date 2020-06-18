@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="math.css">
+    <title>MathML in HTML5</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </script>
+</head>
+
+<body>
+    <div id="mathDisplayReadOnly">
+        <div class="rowContent b0" data-command-text="" data-statement-text="\sqrt{2}は無理数" data-blevel="0">
+            <div class="command">\[\]</div>
+            <div class="statement">\[\sqrt{2}は無理数\]</div>
+        </div>
+        <details open="">
+            <summary style=""></summary>
+            <div class="rowContent b1" data-command-text="Assume" data-statement-text="\sqrt{2}は有理数" data-blevel="1">
+                <div class="command">\[Assume\]</div>
+                <div class="statement">\[\sqrt{2}は有理数\]</div>
+            </div>
+            <div class="rowContent b1" data-command-text="Then" data-statement-text="矛盾が生じる" data-blevel="1">
+                <div class="command">\[Then\]</div>
+                <div class="statement">\[矛盾が生じる\]</div>
+            </div>
+            <details open="">
+                <summary style=""></summary>
+                <div class="rowContent b2" data-command-text="\exists Let"
+                    data-statement-text="p, q = min\{(p, q)\in \mathbb{N}\mid \sqrt{2} = \frac{p}{q}, \}"
+                    data-blevel="2">
+                    <div class="command">\[\exists Let\]</div>
+                    <div class="statement">\[p, q = min\{(p, q)\in \mathbb{N}\mid \sqrt{2} = \frac{p}{q}, \}\]</div>
+                </div>
+                <details open="">
+                    <summary style=""></summary>
+                    <div class="rowContent b3" data-command-text="" data-statement-text="自然数の部分集合は最小元を持つ"
+                        data-blevel="3">
+                        <div class="command">\[\]</div>
+                        <div class="statement">\[自然数の部分集合は最小元を持つ\]</div>
+                    </div>
+                    <div class="rowContent b3" data-command-text="And" data-statement-text="\sqrt{2}は有理数"
+                        data-blevel="3">
+                        <div class="command">\[And\]</div>
+                        <div class="statement">\[\sqrt{2}は有理数\]</div>
+                    </div>
+                </details>
+                <div class="rowContent b2" data-command-text="Then" data-statement-text="p, qよりも真に小さな自然数P,Qが存在する"
+                    data-blevel="2">
+                    <div class="command">\[Then\]</div>
+                    <div class="statement">\[p, qよりも真に小さな自然数P,Qが存在する\]</div>
+                </div>
+                <details open="">
+                    <summary style=""></summary>
+                    <div class="rowContent b3" data-command-text="\exists Let"
+                        data-statement-text="P\in \mathbb{N};p = 2P" data-blevel="3">
+                        <div class="command">\[\exists Let\]</div>
+                        <div class="statement">\[P\in \mathbb{N};p = 2P\]</div>
+                    </div>
+                    <details open="">
+                        <summary style=""></summary>
+                        <div class="rowContent b4" data-command-text="" data-statement-text="pは偶数" data-blevel="4">
+                            <div class="command">\[\]</div>
+                            <div class="statement">\[pは偶数\]</div>
+                        </div>
+                        <details open="">
+                            <summary style=""></summary>
+                            <div class="rowContent b5" data-command-text="" data-statement-text="p^2 = 2q^2 \tag{1}"
+                                data-blevel="5">
+                                <div class="command">\[\]</div>
+                                <div class="statement">\[p^2 = 2q^2 \tag{1}\]</div>
+                            </div>
+                            <details open="">
+                                <summary style=""></summary>
+                                <div class="rowContent b6" data-command-text="" data-statement-text="pとqの定義式より"
+                                    data-blevel="6">
+                                    <div class="command">\[\]</div>
+                                    <div class="statement">\[pとqの定義式より\]</div>
+                                </div>
+                            </details>
+                        </details>
+                    </details>
+                    <div class="rowContent b3" data-command-text="\exists Let"
+                        data-statement-text="Q\in \mathbb{N};q = 2Q" data-blevel="3">
+                        <div class="command">\[\exists Let\]</div>
+                        <div class="statement">\[Q\in \mathbb{N};q = 2Q\]</div>
+                    </div>
+                    <div class="rowContent b3" data-command-text="" data-statement-text="qは偶数" data-blevel="3">
+                        <div class="command">\[\]</div>
+                        <div class="statement">\[qは偶数\]</div>
+                    </div>
+                    <details open="">
+                        <summary style=""></summary>
+                        <div class="rowContent b4" data-command-text="" data-statement-text="2P^2 = q^2"
+                            data-blevel="4">
+                            <div class="command">\[\]</div>
+                            <div class="statement">\[2P^2 = q^2\]</div>
+                        </div>
+                        <details open="">
+                            <summary style=""></summary>
+                            <div class="rowContent b5" data-command-text="" data-statement-text="(1)にp = 2Pを代入した"
+                                data-blevel="5">
+                                <div class="command">\[\]</div>
+                                <div class="statement">\[(1)にp = 2Pを代入した\]</div>
+                            </div>
+                        </details>
+                    </details>
+                </details>
+                <div class="rowContent b2" data-command-text="" data-statement-text="これはp,qの定義に反する" data-blevel="2">
+                    <div class="command">\[\]</div>
+                    <div class="statement">\[これはp,qの定義に反する\]</div>
+                </div>
+            </details>
+        </details>
+    </div>
+
+</body>
+
+</html>

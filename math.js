@@ -261,7 +261,7 @@ myLatex.makeReadOnlyThisPage = () => {
     myLatex.structureRows();
     myLatex.openAllDetails();
     myLatex.unvisibleDetails();
-    myLatex.makeRawAllcontent();
+    myLatex.makeAllContentRaw();
 }
 myLatex.unvisibleDetails = () => {
     let summaryList = document.getElementsByTagName("summary")
@@ -284,7 +284,7 @@ myLatex.openAllDetails = () => {
         element.setAttribute('open', '')
     }
 }
-myLatex.makeAllcontentRaw = () => {
+myLatex.makeAllContentRaw = () => {
     let rowList = document.getElementsByClassName("rowContent")
     for (let index = 0; index < rowList.length; index++) {
         const row = rowList[index];
