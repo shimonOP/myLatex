@@ -22,7 +22,7 @@ var myLatex = {};
 
 })();
 
-myLatex.blevel = 1;
+myLatex.maxblevel = 20;
 
 myLatex.inputToDisplay = () => {
     const selectedList = document.getElementsByClassName("mathSelected")
@@ -41,7 +41,7 @@ myLatex.editContent = ({ string = "", dom = null } = {}) => {
         // console.log(dom);
         if (dom.classList.contains("command")) {
             string = string.slice(0, 1).toUpperCase() + string.slice(1);
-            console.log(string)
+            // console.log(string)
             dom.parentNode.dataset.commandText = string
         } else if (dom.classList.contains("statement")) {
             dom.parentNode.dataset.statementText = string
@@ -56,7 +56,7 @@ myLatex.createNewRowContent = ({ string = "", therow = document.getElementById("
     if (therow === null) {
         blevel = 0
     } else {
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < myLatex.maxblevel; i++) {
             let b = "b" + String(i)
             if (therow.classList.contains(b)) {
                 blevel = i
@@ -132,7 +132,7 @@ myLatex.createNewRowContent = ({ string = "", therow = document.getElementById("
     incBlevelButton.addEventListener('click', function (e) {
         let blevel = parseInt(this.parentNode.dataset.blevel);
         e.stopPropagation();
-        if (blevel < 9) {
+        if (blevel < myLatex.maxblevel) {
             this.parentNode.classList.remove('b' + blevel)
             this.parentNode.classList.add('b' + (blevel + 1))
             this.parentNode.dataset.blevel = blevel + 1;
@@ -177,7 +177,7 @@ myLatex.moveDown = () => {
         if (theContent.classList.contains("command")) {
             theContent.nextSibling.classList.add('mathSelected')
             theContent.classList.remove('mathSelected')
-            console.log(theContent.parentNode.dataset.statementText)
+            //console.log(theContent.parentNode.dataset.statementText)
             editor.setValue(theContent.parentNode.dataset.statementText)
         } else {
             theContent.classList.remove('mathSelected')
