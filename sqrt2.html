@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="math.css">
+  <title>MathML in HTML5</title>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </script>
+</head>
+
+<body>
+  <div id="mathDisplayReadOnly">
+    <div class="rowContent b0" data-command-text="Let" data-statement-text="x = \sqrt{2}" data-blevel="0">
+      <div class="command">\[Let\]</div>
+      <div class="statement">\[x = \sqrt{2}\]</div>
+    </div>
+    <div class="rowContent b0" data-command-text="Then" data-statement-text="x は無理数" data-blevel="0">
+      <div class="command">\[Then\]</div>
+      <div class="statement">\[x は無理数\]</div>
+    </div>
+    <details open="">
+      <summary style="display:none"></summary>
+      <div class="rowContent b1" data-command-text="Assume" data-statement-text="xは有理数" data-blevel="1">
+        <div class="command">\[Assume\]</div>
+        <div class="statement">\[xは有理数\]</div>
+      </div>
+      <div class="rowContent b1" data-command-text="Then" data-statement-text="矛盾が生じる" data-blevel="1">
+        <div class="command">\[Then\]</div>
+        <div class="statement">\[矛盾が生じる\]</div>
+      </div>
+      <details open="">
+        <summary style="display:none"></summary>
+        <div class="rowContent b2" data-command-text="\exists Let"
+          data-statement-text="p,q \in N, p,qは互いに素,\frac{p}{q}=x" data-blevel="2">
+          <div class="command">\[\exists Let\]</div>
+          <div class="statement">\[p,q \in N, p,qは互いに素,\frac{p}{q}=x\]</div>
+        </div>
+        <details open="">
+          <summary style="display:none"></summary>
+          <div class="rowContent b3" data-command-text="" data-statement-text="xは有理数" data-blevel="3">
+            <div class="command"></div>
+            <div class="statement">\[xは有理数\]</div>
+          </div>
+        </details>
+        <div class="rowContent b2" data-command-text="Then" data-statement-text="pは2の倍数" data-blevel="2">
+          <div class="command">\[Then\]</div>
+          <div class="statement">\[pは2の倍数\]</div>
+        </div>
+        <details open="">
+          <summary style="display:none"></summary>
+          <div class="rowContent b3" data-command-text="" data-statement-text="p^2は2の倍数" data-blevel="3">
+            <div class="command"></div>
+            <div class="statement">\[p^2は2の倍数\]</div>
+          </div>
+          <details open="">
+            <summary style="display:none"></summary>
+            <div class="rowContent b4" data-command-text="" data-statement-text="2p^2=q^2" data-blevel="4">
+              <div class="command"></div>
+              <div class="statement">\[2p^2=q^2\]</div>
+            </div>
+          </details>
+        </details>
+        <div class="rowContent b2" data-command-text="And" data-statement-text="qは2の倍数" data-blevel="2">
+          <div class="command">\[And\]</div>
+          <div class="statement">\[qは2の倍数\]</div>
+        </div>
+        <details open="">
+          <summary style="display:none"></summary>
+          <div class="rowContent b3" data-command-text="" data-statement-text="q^2は2の倍数" data-blevel="3">
+            <div class="command"></div>
+            <div class="statement">\[q^2は2の倍数\]</div>
+          </div>
+          <details open="">
+            <summary style="display:none"></summary>
+            <div class="rowContent b4" data-command-text="" data-statement-text="2p^2=q^2" data-blevel="4">
+              <div class="command"></div>
+              <div class="statement">\[2p^2=q^2\]</div>
+            </div>
+          </details>
+        </details>
+        <div class="rowContent b2" data-command-text="" data-statement-text="pとqの定義に反する" data-blevel="2">
+          <div class="command"></div>
+          <div class="statement">\[pとqの定義に反する\]</div>
+        </div>
+      </details>
+    </details>
+  </div>
+</body>
+
+</html>
