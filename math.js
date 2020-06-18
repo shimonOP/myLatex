@@ -18,6 +18,13 @@ var myLatex = {};
             myLatex.moveDown();
         }
     })
+    editor.commands.addCommand({
+        name: "typeset",
+        bindKey: { win: "Ctrl-Enter", mac: "Command-Enter" },
+        exec: function (editor) {
+            mathJax.typeset();
+        }
+    })
     editor.$blockScrolling = Infinity;
 
 })();
@@ -274,7 +281,7 @@ myLatex.visibleDetails = () => {
     let summaryList = document.getElementsByTagName("summary")
     for (let index = 0; index < summaryList.length; index++) {
         const element = summaryList[index];
-        element.setAttribute('style', '')
+        element.removeAttribute('style')
     }
 }
 myLatex.openAllDetails = () => {
