@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="math.css">
+    <title>MathML in HTML5</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </script>
+</head>
+
+<body>
+
+</body>
+<div id="mathDisplayReadOnly">
+    <div class="rowContent b0" data-command-text="Let" data-statement-text="n \in \mathbb{N} " data-blevel="0">
+        <div class="command">\[Let\]</div>
+        <div class="statement">\[n \in \mathbb{N} \]</div>
+    </div>
+    <div class="rowContent b0" data-command-text="Then" data-statement-text="1+2+...n = \frac{n(n+1)}{2} \tag{1}"
+        data-blevel="0">
+        <div class="command">\[Then\]</div>
+        <div class="statement">\[1+2+...n = \frac{n(n+1)}{2} \tag{1}\]</div>
+    </div>
+    <details open="">
+        <summary style="display:none"></summary>
+        <div class="rowContent b1" data-command-text="Let" data-statement-text="n = 1" data-blevel="1">
+            <div class="command">\[Let\]</div>
+            <div class="statement">\[n = 1\]</div>
+        </div>
+        <div class="rowContent b1" data-command-text="Then" data-statement-text="(1)にn=1を代入したものは成り立つ" data-blevel="1">
+            <div class="command">\[Then\]</div>
+            <div class="statement">\[(1)にn=1を代入したものは成り立つ\]</div>
+        </div>
+        <details open="">
+            <summary style="display:none"></summary>
+            <div class="rowContent b2" data-command-text="" data-statement-text="実際に(1)に代入すると1=1" data-blevel="2">
+                <div class="command">\[\]</div>
+                <div class="statement">\[実際に(1)に代入すると1=1\]</div>
+            </div>
+        </details>
+        <div class="rowContent b1" data-command-text="Let" data-statement-text="k \in \mathbb{N}" data-blevel="1">
+            <div class="command">\[Let\]</div>
+            <div class="statement">\[k \in \mathbb{N}\]</div>
+        </div>
+        <div class="rowContent b1" data-command-text="Assume" data-statement-text="n=kのとき(1)が成り立つ" data-blevel="1">
+            <div class="command">\[Assume\]</div>
+            <div class="statement">\[n=kのとき(1)が成り立つ\]</div>
+        </div>
+        <div class="rowContent b1" data-command-text="Then " data-statement-text="n = k+1のとき(1)が成り立つ" data-blevel="1">
+            <div class="command">\[Then \]</div>
+            <div class="statement">\[n = k+1のとき(1)が成り立つ\]</div>
+        </div>
+        <details open="">
+            <summary style="display:none"></summary>
+            <div class="rowContent b2" data-command-text="" data-statement-text="1+2+...k+1 = \frac{k(k+1)}{2}+k"
+                data-blevel="2">
+                <div class="command">\[\]</div>
+                <div class="statement">\[1+2+...k+1 = \frac{k(k+1)}{2}+k\]</div>
+            </div>
+            <div class="rowContent b2" data-command-text="" data-statement-text="= \frac{k^2+3k+2}{2}" data-blevel="2">
+                <div class="command">\[\]</div>
+                <div class="statement">\[= \frac{k^2+3k+2}{2}\]</div>
+            </div>
+            <div class="rowContent b2" data-command-text="" data-statement-text="=\frac{(k+1)(k+1+1)}{2}"
+                data-blevel="2">
+                <div class="command">\[\]</div>
+                <div class="statement">\[=\frac{(k+1)(k+1+1)}{2}\]</div>
+            </div>
+        </details>
+    </details>
+</div>
+
+</html>
