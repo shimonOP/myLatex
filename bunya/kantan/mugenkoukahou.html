@@ -31,7 +31,7 @@
                     data-statement-text="p, q = min\{(p, q)\in \mathbb{N}\mid \sqrt{2} = \frac{p}{q}, \}"
                     data-blevel="2">
                     <div class="command">\[\exists Let\]</div>
-                    <div class="statement">\[p, q = min\{(p, q)\in \mathbb{N}\mid \sqrt{2} = \frac{p}{q}, \}\]</div>
+                    <div class="statement">\[p, q = min\{(p, q)\in \mathbb{N}\mid \sqrt{2} = \frac{p}{q} \}\]</div>
                 </div>
                 <details>
                     <summary></summary>
@@ -49,7 +49,7 @@
                 <div class="rowContent b2" data-command-text="Then" data-statement-text="p, qよりも真に小さな自然数P,Qが存在する"
                     data-blevel="2">
                     <div class="command">\[Then\]</div>
-                    <div class="statement">\[p, qよりも真に小さな自然数P,Qが存在する\]</div>
+                    <div class="statement">\[p, qよりも真に小さな自然数P,Qで\sqrt{2} = \frac{P}{Q}を満たすものが存在する\]</div>
                 </div>
                 <details>
                     <summary></summary>
@@ -86,26 +86,35 @@
                         <div class="command">\[\exists Let\]</div>
                         <div class="statement">\[Q\in \mathbb{N};q = 2Q\]</div>
                     </div>
-                    <div class="rowContent b3" data-command-text="" data-statement-text="qは偶数" data-blevel="3">
-                        <div class="command">\[\]</div>
-                        <div class="statement">\[qは偶数\]</div>
-                    </div>
                     <details>
                         <summary></summary>
-                        <div class="rowContent b4" data-command-text="" data-statement-text="2P^2 = q^2"
-                            data-blevel="4">
+                        <div class="rowContent b4" data-command-text="" data-statement-text="qは偶数" data-blevel="4">
                             <div class="command">\[\]</div>
-                            <div class="statement">\[2P^2 = q^2\]</div>
+                            <div class="statement">\[qは偶数\]</div>
                         </div>
                         <details>
                             <summary></summary>
-                            <div class="rowContent b5" data-command-text="" data-statement-text="(1)にp = 2Pを代入した"
+                            <div class="rowContent b5" data-command-text="" data-statement-text="2P^2 = q^2"
                                 data-blevel="5">
                                 <div class="command">\[\]</div>
-                                <div class="statement">\[(1)にp = 2Pを代入した\]</div>
+                                <div class="statement">\[2P^2 = q^2\]</div>
                             </div>
+                            <details>
+                                <summary></summary>
+                                <div class="rowContent b6" data-command-text="" data-statement-text="(1)にp = 2Pを代入した"
+                                    data-blevel="6">
+                                    <div class="command">\[\]</div>
+                                    <div class="statement">\[(1)にp = 2Pを代入した\]</div>
+                                </div>
+                            </details>
                         </details>
                     </details>
+                    <div class="rowContent b3" data-command-text="Then"
+                        data-statement-text="P\in \mathbb{N};p = 2P" data-blevel="3">
+                        <div class="command">\[Then\]</div>
+                        <div class="statement">\[P&lt;p, Q&lt;p, \sqrt{2} = \frac{Q}{P}\]</div>
+                    </div>
+
                 </details>
                 <div class="rowContent b2" data-command-text="" data-statement-text="これはp,qの定義に反する" data-blevel="2">
                     <div class="command">\[\]</div>
