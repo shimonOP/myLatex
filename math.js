@@ -22,7 +22,7 @@ var myLatex = {};
         name: "typeset",
         bindKey: { win: "Ctrl-Enter", mac: "Command-Enter" },
         exec: function (editor) {
-            mathJax.typeset();
+            MathJax.typeset();
         }
     })
     editor.$blockScrolling = Infinity;
@@ -54,10 +54,10 @@ myLatex.editContent = ({ string = "", dom = null } = {}) => {
         } else if (dom.classList.contains("statement")) {
             dom.parentNode.dataset.statementText = string
         }
-        if(myLatex.isMathMode){
+        if (myLatex.isMathMode) {
             dom.textContent = "\\[" + string + "\\]";
-        }else{
-            dom.textContent = string ;
+        } else {
+            dom.textContent = string;
         }
     }
     //MathJax.typeset();
@@ -103,6 +103,12 @@ myLatex.createNewRowContent = ({ string = "", therow = document.getElementById("
     appendNewRowButton.appendChild(document.createTextNode('+'))
     incBlevelButton.appendChild(document.createTextNode('→'))
     decBlevelButton.appendChild(document.createTextNode('←'))
+    closeButton.classList.add('closeButton')
+    editCommandButton.classList.add('editCommandButton')
+    editStatementButton.classList.add('editStatementButton')
+    appendNewRowButton.classList.add('appendNewRowButton')
+    incBlevelButton.classList.add('incBlevelButton')
+    decBlevelButton.classList.add('decBlevelButton')
 
 
     closeButton.addEventListener('click', function (e) {
@@ -210,12 +216,10 @@ myLatex.clearAllButton = () => {
     for (let index = 0; index < rowList.length; index++) {
         const row = rowList[index];
         const contentNum = row.children.length
-        let removeNum = 0
         for (let j = 0; j < contentNum; j++) {
-            const content = row.children[j - removeNum];
+            const content = row.children[j];
             if (j !== 0 && j !== 1) {
-                content.remove();
-                removeNum++;
+                content.setAttribute('style', 'display: none');
             }
         }
 
@@ -232,13 +236,13 @@ myLatex.clearSelectedStyle = () => {
 myLatex.clearEditTools = () => {
     myLatex.clearAllButton();
     myLatex.clearSelectedStyle();
-    document.getElementById('editor').remove()
+    document.getElementById('editor').style.display = 'none'
 }
 myLatex.structureRows = () => {
     let mathDisplay = document.getElementById("mathDisplay")
     let rowList = mathDisplay.children;
     let mathDisplayReadOnly = document.createElement('div')
-    mathDisplayReadOnly.setAttribute('id', 'mathDisplayReadOnly')
+    mathDisplayReadOnly.setAttribute('id', 'mathDisplay')
     let prelevel = 0;
     let detail = mathDisplayReadOnly
     let rlength = rowList.length
@@ -259,7 +263,9 @@ myLatex.structureRows = () => {
         detail.appendChild(row)
         prelevel = blevel
     }
+    mathDisplay.remove();
     document.body.appendChild(mathDisplayReadOnly)
+
 
 
 }
@@ -267,7 +273,6 @@ myLatex.makeReadOnlyThisPage = () => {
     myLatex.clearEditTools();
     myLatex.structureRows();
     myLatex.openAllDetails();
-    myLatex.unvisibleDetails();
     myLatex.makeAllContentRaw();
 }
 myLatex.unvisibleDetails = () => {
@@ -300,6 +305,118 @@ myLatex.makeAllContentRaw = () => {
     }
 
 }
-myLatex.changeEditMode = () =>{
+myLatex.changeEditMode = () => {
     myLatex.isMathMode = !myLatex.isMathMode
+}
+myLatex.makeThisPageEditable = () => {
+    myLatex.destructureRows();
+    myLatex.visibleAllEditTools();
+}
+myLatex.visibleAllEditTools = () => {
+    let mathDisplay = document.getElementById("mathDisplay")
+    let rowList = mathDisplay.children
+    for (let index = 0; index < rowList.length; index++) {
+        const row = rowList[index];
+        const contentNum = row.children.length
+        for (let j = 0; j < contentNum; j++) {
+            const content = row.children[j];
+            if (j !== 0 && j !== 1) {
+                content.removeAttribute('style');
+            }
+        }
+    }
+    document.getElementById('editor').style.display = ''
+}
+myLatex.destructureRows = () => {
+    let mathDisplay = document.getElementById("mathDisplay")
+    let rowList = document.getElementsByClassName("rowContent")
+    let mathDisplayEditable = document.createElement('div')
+    mathDisplayEditable.setAttribute('id', 'mathDisplay')
+    let rlength = rowList.length
+    for (let index = 0; index < rlength; index++) {
+        const row = rowList[0];
+        mathDisplayEditable.appendChild(row)
+    }
+    mathDisplay.remove();
+    document.body.insertBefore(mathDisplayEditable, document.getElementById('editor'))
+}
+myLatex.addEventListenerOnAllButton = () => {
+    let closeButtonList = document.getElementsByClassName('closeButton')
+    let editCommandButton = document.getElementsByClassName('editCommandButton')
+    let editStatementButton = document.getElementsByClassName('editStatementButton')
+    let appendNewRowButton = document.getElementsByClassName('appendNewRowButton')
+    let incBlevelButton = document.getElementsByClassName('incBlevelButton')
+    let decBlevelButton = document.getElementsByClassName('decBlevelButton')
+    for (let index = 0; index < closeButtonList.length; index++) {
+        const element = closeButtonList[index];
+        element.addEventListener('click', function (e) {
+            e.stopPropagation();
+            this.parentNode.remove();
+        })
+    }
+    for (let index = 0; index < editCommandButton.length; index++) {
+        const element = editCommandButton[index];
+        element.addEventListener('click', function (e) {
+            e.stopPropagation();
+            let selectedList = document.getElementsByClassName('mathSelected')
+            if (selectedList.length === 0) {
+                this.parentNode.children[0].classList.add('mathSelected')
+            } else if (selectedList.length === 1) {
+                selectedList[0].classList.remove('mathSelected')
+                this.parentNode.children[0].classList.add('mathSelected')
+            } else {
+                alert('selected Problem')
+            }
+            editor.setValue(this.parentNode.dataset.commandText)
+            editor.focus();
+        })
+    }
+    for (let index = 0; index < editStatementButton.length; index++) {
+        const element = editStatementButton[index];
+        element.addEventListener('click', function (e) {
+            e.stopPropagation();
+            let selectedList = document.getElementsByClassName('mathSelected')
+            if (selectedList.length === 0) {
+                this.parentNode.children[1].classList.add('mathSelected')
+            } else if (selectedList.length === 1) {
+                selectedList[0].classList.remove('mathSelected')
+                this.parentNode.children[1].classList.add('mathSelected')
+            } else {
+                alert('selected Problem')
+            }
+            editor.setValue(this.parentNode.dataset.statementText)
+            editor.focus();
+        })
+    }
+    for (let index = 0; index < appendNewRowButton.length; index++) {
+        const element = appendNewRowButton[index];
+        element.addEventListener('click', function (e) {
+            e.stopPropagation();
+            myLatex.createNewRowContent({ therow: this.parentNode });
+        })
+    }
+    for (let index = 0; index < incBlevelButton.length; index++) {
+        const element = incBlevelButton[index];
+        element.addEventListener('click', function (e) {
+            let blevel = parseInt(this.parentNode.dataset.blevel);
+            e.stopPropagation();
+            if (blevel < myLatex.maxblevel) {
+                this.parentNode.classList.remove('b' + blevel)
+                this.parentNode.classList.add('b' + (blevel + 1))
+                this.parentNode.dataset.blevel = blevel + 1;
+            }
+        })
+    }
+    for (let index = 0; index < decBlevelButton.length; index++) {
+        const element = decBlevelButton[index];
+        element.addEventListener('click', function (e) {
+            let blevel = parseInt(this.parentNode.dataset.blevel);
+            e.stopPropagation();
+            if (blevel > 0) {
+                this.parentNode.classList.remove('b' + blevel)
+                this.parentNode.classList.add('b' + (blevel - 1))
+                this.parentNode.dataset.blevel = blevel - 1;
+            }
+        })
+    }
 }
