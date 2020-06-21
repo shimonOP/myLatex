@@ -27,6 +27,20 @@ var myLatex = {};
         }
     })
     editor.commands.addCommand({
+        name: "moveRight",
+        bindKey: { win: "Ctrl-right", mac: "Command-Right" },
+        exec: function (editor) {
+            myLatex.moveRight();
+        }
+    })
+    editor.commands.addCommand({
+        name: "moveLeft",
+        bindKey: { win: "Ctrl-Left", mac: "Command-Left" },
+        exec: function (editor) {
+            myLatex.moveLeft();
+        }
+    })
+    editor.commands.addCommand({
         name: "typeset",
         bindKey: { win: "Ctrl-Enter", mac: "Command-Enter" },
         exec: function (editor) {
@@ -125,7 +139,34 @@ myLatex.createNewRowContent = ({ string = "", therow = document.getElementById("
     incBlevelButton.classList.add('incBlevelButton')
     decBlevelButton.classList.add('decBlevelButton')
 
-
+    newStatement.addEventListener('click', function (e) {
+        e.stopPropagation();
+        let selectedList = document.getElementsByClassName('mathSelected')
+        if (selectedList.length === 0) {
+            this.classList.add('mathSelected')
+        } else if (selectedList.length === 1) {
+            selectedList[0].classList.remove('mathSelected')
+            this.classList.add('mathSelected')
+        } else {
+            alert('selected Problem')
+        }
+        editor.setValue(this.parentNode.dataset.statementText)
+        editor.focus();
+    })
+    newCommand.addEventListener('click', function (e) {
+        e.stopPropagation();
+        let selectedList = document.getElementsByClassName('mathSelected')
+        if (selectedList.length === 0) {
+            this.classList.add('mathSelected')
+        } else if (selectedList.length === 1) {
+            selectedList[0].classList.remove('mathSelected')
+            this.classList.add('mathSelected')
+        } else {
+            alert('selected Problem')
+        }
+        editor.setValue(this.parentNode.dataset.commandText)
+        editor.focus();
+    })
     closeButton.addEventListener('click', function (e) {
         e.stopPropagation();
         this.parentNode.remove();
@@ -163,8 +204,8 @@ myLatex.createNewRowContent = ({ string = "", therow = document.getElementById("
         myLatex.createNewRowContent({ therow: this.parentNode });
     })
     incBlevelButton.addEventListener('click', function (e) {
-        let blevel = parseInt(this.parentNode.dataset.blevel);
         e.stopPropagation();
+        let blevel = parseInt(this.parentNode.dataset.blevel);
         if (blevel < myLatex.maxblevel) {
             this.parentNode.classList.remove('b' + blevel)
             this.parentNode.classList.add('b' + (blevel + 1))
@@ -172,8 +213,8 @@ myLatex.createNewRowContent = ({ string = "", therow = document.getElementById("
         }
     })
     decBlevelButton.addEventListener('click', function (e) {
-        let blevel = parseInt(this.parentNode.dataset.blevel);
         e.stopPropagation();
+        let blevel = parseInt(this.parentNode.dataset.blevel);
         if (blevel > 0) {
             this.parentNode.classList.remove('b' + blevel)
             this.parentNode.classList.add('b' + (blevel - 1))
@@ -255,25 +296,28 @@ myLatex.moveUp = () => {
 myLatex.moveRight = () =>{
     let selectedList = document.getElementsByClassName("mathSelected");
     if (selectedList.length === 0) {
-        let mathDisplay = document.getElementById("mathDisplay")
-        let lastrow = mathDisplay.lastElementChild
-        lastrow.children[1].classList.add('mathSelected')
-        editor.setValue(lastrow.dataset.statementText)
+
     } else if (selectedList.length === 1) {
-        let theContent = selectedList[0]
-        if (theContent.classList.contains("command")) {
-            theContent.classList.remove('mathSelected')
-            let previousRow = theContent.parentNode.previousSibling
-            if (previousRow === null||previousRow.nodeName==="#text") {
-            } else {
-                previousRow.children[1].classList.add('mathSelected')
-                editor.setValue(previousRow.dataset.statementText)
-            }
-        } else {
-            theContent.previousSibling.classList.add('mathSelected')
-            theContent.classList.remove('mathSelected')
-            //console.log(theContent.parentNode.dataset.statementText)
-            editor.setValue(theContent.parentNode.dataset.commandText)
+        let theContent = selectedList[0].parentNode
+        let blevel = parseInt(theContent.dataset.blevel);
+        if (blevel < myLatex.maxblevel) {
+            theContent.classList.remove('b' + blevel)
+            theContent.classList.add('b' + (blevel + 1))
+            theContent.dataset.blevel = blevel + 1;
+        }
+    }
+}
+myLatex.moveLeft = () =>{
+    let selectedList = document.getElementsByClassName("mathSelected");
+    if (selectedList.length === 0) {
+
+    } else if (selectedList.length === 1) {
+        let theContent = selectedList[0].parentNode
+        let blevel = parseInt(theContent.dataset.blevel);
+        if (blevel > 0) {
+            theContent.classList.remove('b' + blevel)
+            theContent.classList.add('b' + (blevel - 1))
+            theContent.dataset.blevel = blevel - 1;
         }
     }
 }
