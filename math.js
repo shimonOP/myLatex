@@ -11,11 +11,19 @@ var myLatex = {};
     //     }
     // })
     editor.commands.addCommand({
-        name: "cancelShiftEnter",
+        name: "inputAndMoveDown",
         bindKey: { win: "Shift-Enter", mac: "Shift-Enter" },
         exec: function (editor) {
             myLatex.inputToDisplay();
             myLatex.moveDown();
+        }
+    })
+    editor.commands.addCommand({
+        name: "inputAndMoveUp",
+        bindKey: { win: "Ctrl-Shift-Enter", mac: "Command-Shift-Enter" },
+        exec: function (editor) {
+            myLatex.inputToDisplay();
+            myLatex.moveUp();
         }
     })
     editor.commands.addCommand({
@@ -35,7 +43,6 @@ myLatex.isMathMode = true;
 myLatex.inputToDisplay = () => {
     const selectedList = document.getElementsByClassName("mathSelected")
     if (selectedList.length === 0) {
-        myLatex.createNewRowContent()
     } else if (selectedList.length === 1) {
         myLatex.editContent({ string: editor.getValue(), dom: selectedList[0] })
     }
@@ -50,8 +57,14 @@ myLatex.editContent = ({ string = "", dom = null } = {}) => {
         if (dom.classList.contains("command")) {
             string = string.slice(0, 1).toUpperCase() + string.slice(1);
             // console.log(string)
+            if(dom.parentNode.dataset.commandText===string){
+                return
+            }
             dom.parentNode.dataset.commandText = string
         } else if (dom.classList.contains("statement")) {
+            if(dom.parentNode.dataset.statementText===string){
+                return
+            }
             dom.parentNode.dataset.statementText = string
         }
         if (myLatex.isMathMode) {
@@ -82,6 +95,7 @@ myLatex.createNewRowContent = ({ string = "", therow = document.getElementById("
     let mathDisplay = document.getElementById("mathDisplay")
     let newCommand = document.createElement('div')
     let newStatement = document.createElement('div')
+    let newOtherContent = document.createElement('div')
     let newrowContent = document.createElement('div')
     let closeButton = document.createElement('button')
     let editCommandButton = document.createElement('button')
@@ -91,6 +105,7 @@ myLatex.createNewRowContent = ({ string = "", therow = document.getElementById("
     let decBlevelButton = document.createElement('button')
     newCommand.classList.add('command')
     newStatement.classList.add('statement')
+    newOtherContent.classList.add('otherContent')
     newrowContent.classList.add('rowContent')
     newrowContent.classList.add('b' + String(blevel))
     newrowContent.dataset.commandText = ("")
@@ -169,6 +184,7 @@ myLatex.createNewRowContent = ({ string = "", therow = document.getElementById("
 
     newrowContent.appendChild(newCommand)
     newrowContent.appendChild(newStatement)
+    newrowContent.appendChild(newOtherContent)
     newrowContent.appendChild(closeButton)
     newrowContent.appendChild(editCommandButton)
     newrowContent.appendChild(editStatementButton)
@@ -186,6 +202,7 @@ myLatex.createNewRowContent = ({ string = "", therow = document.getElementById("
 myLatex.moveDown = () => {
     let selectedList = document.getElementsByClassName("mathSelected");
     if (selectedList.length === 0) {
+        myLatex.createNewRowContent()
         let mathDisplay = document.getElementById("mathDisplay")
         let lastrow = mathDisplay.lastElementChild
         lastrow.children[0].classList.add('mathSelected')
@@ -207,6 +224,57 @@ myLatex.moveDown = () => {
             }
         }
 
+    }
+}
+myLatex.moveUp = () => {
+    let selectedList = document.getElementsByClassName("mathSelected");
+    if (selectedList.length === 0) {
+        let mathDisplay = document.getElementById("mathDisplay")
+        let lastrow = mathDisplay.lastElementChild
+        lastrow.children[1].classList.add('mathSelected')
+        editor.setValue(lastrow.dataset.statementText)
+    } else if (selectedList.length === 1) {
+        let theContent = selectedList[0]
+        if (theContent.classList.contains("command")) {
+            theContent.classList.remove('mathSelected')
+            let previousRow = theContent.parentNode.previousSibling
+            if (previousRow === null||previousRow.nodeName==="#text") {
+            } else {
+                previousRow.children[1].classList.add('mathSelected')
+                editor.setValue(previousRow.dataset.statementText)
+            }
+        } else {
+            theContent.previousSibling.classList.add('mathSelected')
+            theContent.classList.remove('mathSelected')
+            //console.log(theContent.parentNode.dataset.statementText)
+            editor.setValue(theContent.parentNode.dataset.commandText)
+        }
+
+    }
+}
+myLatex.moveRight = () =>{
+    let selectedList = document.getElementsByClassName("mathSelected");
+    if (selectedList.length === 0) {
+        let mathDisplay = document.getElementById("mathDisplay")
+        let lastrow = mathDisplay.lastElementChild
+        lastrow.children[1].classList.add('mathSelected')
+        editor.setValue(lastrow.dataset.statementText)
+    } else if (selectedList.length === 1) {
+        let theContent = selectedList[0]
+        if (theContent.classList.contains("command")) {
+            theContent.classList.remove('mathSelected')
+            let previousRow = theContent.parentNode.previousSibling
+            if (previousRow === null||previousRow.nodeName==="#text") {
+            } else {
+                previousRow.children[1].classList.add('mathSelected')
+                editor.setValue(previousRow.dataset.statementText)
+            }
+        } else {
+            theContent.previousSibling.classList.add('mathSelected')
+            theContent.classList.remove('mathSelected')
+            //console.log(theContent.parentNode.dataset.statementText)
+            editor.setValue(theContent.parentNode.dataset.commandText)
+        }
     }
 }
 myLatex.clearAllButton = () => {
