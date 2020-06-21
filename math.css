@@ -75,6 +75,7 @@
 }
 .statement{
     background-color: white;
+    min-width: 6em;
 }
 .rowContent{
     display: flex;
