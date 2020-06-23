@@ -3,14 +3,40 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-  <link rel="stylesheet" type="text/css" href="../../math.css">
+  <link rel="stylesheet" type="text/css" href="math.css">
   <title>MathML in HTML5</title>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </script>
+  <!-- <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": { matchFontHeight: false },
+        displayAlign: "left",
+        displayIndent: "2em"
+      });
+  </script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-language_tools.js"></script>
 </head>
 
 <body>
-
+  
+  <div id="mathDisplay"> </div>
+  <div id="editor" style="height: 200px ; display:none"></div>
 </body>
+<script>
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/monokai");
+  editor.setFontSize(14);
+  editor.getSession().setMode("ace/mode/latex");
+  editor.getSession().setUseWrapMode(true);
+  editor.getSession().setTabSize(2);
+  editor.setOptions({
+    enableBasicAutocompletion: true,
+    enableSnippets: true,
+    enableLiveAutocompletion: true
+  });
+</script>
+
+<script src="../../math.js"></script>
 
 </html>

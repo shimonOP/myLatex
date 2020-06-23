@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="../../math.css">
+  <title>MathML in HTML5</title>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </script>
+  <!-- <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": { matchFontHeight: false },
+        displayAlign: "left",
+        displayIndent: "2em"
+      });
+  </script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-language_tools.js"></script>
+</head>
+
+<body>
+  
+  <div id="mathDisplay">
+    <div class="rowContent b0" data-command-text="Let" data-statement-text="n : Z_{\geq5}" data-blevel="0">
+      <div class="command">\[Let\]</div>
+      <div class="statement">\[n : Z_{\geq5}\]</div>
+      <div class="otherContent" style="display: none"></div><button class="closeButton"
+        style="display: none">×</button><button class="appendNewRowButton" style="display: none">+</button><button
+        class="decBlevelButton" style="display: none">←</button><button class="incBlevelButton"
+        style="display: none">→</button>
+    </div>
+    <div class="rowContent b0" data-command-text="" data-statement-text="t_1,\cdots,t_n:{\bf Q}上代数的独立な元
+" data-blevel="0">
+      <div class="command">\[\]</div>
+      <div class="statement">\[t_1,\cdots,t_n:{\bf Q}上代数的独立な元
+        \]</div>
+      <div class="otherContent" style="display: none"></div><button class="closeButton"
+        style="display: none">×</button><button class="appendNewRowButton" style="display: none">+</button><button
+        class="decBlevelButton" style="display: none">←</button><button class="incBlevelButton"
+        style="display: none">→</button>
+    </div>
+    <div class="rowContent b0" data-command-text="" data-statement-text="f(X) = X^n+t_1X^{n-1}+\cdots+t_n"
+      data-blevel="0">
+      <div class="command">\[\]</div>
+      <div class="statement">\[f(X) = X^n+t_1X^{n-1}+\cdots+t_n\]</div>
+      <div class="otherContent" style="display: none"></div><button class="closeButton"
+        style="display: none">×</button><button class="appendNewRowButton" style="display: none">+</button><button
+        class="decBlevelButton" style="display: none">←</button><button class="incBlevelButton"
+        style="display: none">→</button>
+    </div>
+    <div class="rowContent b0" data-command-text="Then" data-statement-text="f(X)はべき根によって解くことはできない" data-blevel="0">
+      <div class="command">\[Then\]</div>
+      <div class="statement">\[f(X)はべき根によって解くことはできない\]</div>
+      <div class="otherContent" style="display: none"></div><button class="closeButton"
+        style="display: none">×</button><button class="appendNewRowButton" style="display: none">+</button><button
+        class="decBlevelButton" style="display: none">←</button><button class="incBlevelButton"
+        style="display: none">→</button>
+    </div>
+    <details open="">
+      <summary></summary>
+      <div class="rowContent b1" data-command-text="Let"
+        data-statement-text="\alpha_1,\cdots,\alpha_n:f(X) = (X-\alpha_1)\cdots(X-\alpha_n)" data-blevel="1">
+        <div class="command">\[Let\]</div>
+        <div class="statement">\[\alpha_1,\cdots,\alpha_n:f(X) = (X-\alpha_1)\cdots(X-\alpha_n)\]</div>
+        <div class="otherContent" style="display: none"></div><button class="closeButton"
+          style="display: none">×</button><button class="appendNewRowButton" style="display: none">+</button><button
+          class="decBlevelButton" style="display: none">←</button><button class="incBlevelButton"
+          style="display: none">→</button>
+      </div>
+      <div class="rowContent b1" data-command-text="" data-statement-text="K = {\bf Q} (t_1,\cdots,t_n)"
+        data-blevel="1">
+        <div class="command">\[\]</div>
+        <div class="statement">\[K = {\bf Q} (t_1,\cdots,t_n)\]</div>
+        <div class="otherContent" style="display: none"></div><button class="closeButton"
+          style="display: none">×</button><button class="appendNewRowButton" style="display: none">+</button><button
+          class="decBlevelButton" style="display: none">←</button><button class="incBlevelButton"
+          style="display: none">→</button>
+      </div>
+      <div class="rowContent b1" data-command-text="" data-statement-text="L = {\bf Q} (\alpha_1,\cdots,\alpha_n)"
+        data-blevel="1">
+        <div class="command">\[\]</div>
+        <div class="statement">\[L = {\bf Q} (\alpha_1,\cdots,\alpha_n)\]</div>
+        <div class="otherContent" style="display: none"></div><button class="closeButton"
+          style="display: none">×</button><button class="appendNewRowButton" style="display: none">+</button><button
+          class="decBlevelButton" style="display: none">←</button><button class="incBlevelButton"
+          style="display: none">→</button>
+      </div>
+      <div class="rowContent b1" data-command-text="" data-statement-text="L^{\prime} = {\bf Q} (X_1,\cdots,X_n)"
+        data-blevel="1">
+        <div class="command">\[\]</div>
+        <div class="statement">\[L^{\prime} = {\bf Q} (X_1,\cdots,X_n)\]</div>
+        <div class="otherContent" style="display: none"></div><button class="closeButton"
+          style="display: none">×</button><button class="appendNewRowButton" style="display: none">+</button><button
+          class="decBlevelButton" style="display: none">←</button><button class="incBlevelButton"
+          style="display: none">→</button>
+      </div>
+      <div class="rowContent b1" data-command-text="" data-statement-text="s_1,\cdots,s_n:X_1,\cdots,X_nの基本対象式"
+        data-blevel="1">
+        <div class="command">\[\]</div>
+        <div class="statement">\[s_1,\cdots,s_n:X_1,\cdots,X_nの基本対象式\]</div>
+        <div class="otherContent" style="display: none"></div><button class="closeButton"
+          style="display: none">×</button><button class="appendNewRowButton" style="display: none">+</button><button
+          class="decBlevelButton" style="display: none">←</button><button class="incBlevelButton"
+          style="display: none">→</button>
+      </div>
+      <div class="rowContent b1" data-command-text="" data-statement-text="g(X) = X^n+s_1X^{n-1}+\cdots+s_n"
+        data-blevel="1">
+        <div class="command">\[\]</div>
+        <div class="statement">\[g(X) = X^n+s_1X^{n-1}+\cdots+s_n\]</div>
+        <div class="otherContent" style="display: none"></div><button class="closeButton"
+          style="display: none">×</button><button class="appendNewRowButton" style="display: none">+</button><button
+          class="decBlevelButton" style="display: none">←</button><button class="incBlevelButton"
+          style="display: none">→</button>
+      </div>
+  <div id="editor" style="height: 200px ; display:none"></div>
+</body>
+<script>
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/monokai");
+  editor.setFontSize(14);
+  editor.getSession().setMode("ace/mode/latex");
+  editor.getSession().setUseWrapMode(true);
+  editor.getSession().setTabSize(2);
+  editor.setOptions({
+    enableBasicAutocompletion: true,
+    enableSnippets: true,
+    enableLiveAutocompletion: true
+  });
+</script>
+
+<script src="../../math.js"></script>
+
+</html>
