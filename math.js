@@ -112,8 +112,6 @@ myLatex.createNewRowContent = ({ string = "", therow = document.getElementById("
     let newOtherContent = document.createElement('div')
     let newrowContent = document.createElement('div')
     let closeButton = document.createElement('button')
-    let editCommandButton = document.createElement('button')
-    let editStatementButton = document.createElement('button')
     let appendNewRowButton = document.createElement('button')
     let incBlevelButton = document.createElement('button')
     let decBlevelButton = document.createElement('button')
@@ -127,14 +125,10 @@ myLatex.createNewRowContent = ({ string = "", therow = document.getElementById("
     newrowContent.dataset.blevel = blevel
     newStatement.appendChild(document.createTextNode(string))
     closeButton.appendChild(document.createTextNode('×'))
-    editCommandButton.appendChild(document.createTextNode('c'))
-    editStatementButton.appendChild(document.createTextNode('s'))
     appendNewRowButton.appendChild(document.createTextNode('+'))
     incBlevelButton.appendChild(document.createTextNode('→'))
     decBlevelButton.appendChild(document.createTextNode('←'))
     closeButton.classList.add('closeButton')
-    editCommandButton.classList.add('editCommandButton')
-    editStatementButton.classList.add('editStatementButton')
     appendNewRowButton.classList.add('appendNewRowButton')
     incBlevelButton.classList.add('incBlevelButton')
     decBlevelButton.classList.add('decBlevelButton')
@@ -171,34 +165,6 @@ myLatex.createNewRowContent = ({ string = "", therow = document.getElementById("
         e.stopPropagation();
         this.parentNode.remove();
     })
-    editCommandButton.addEventListener('click', function (e) {
-        e.stopPropagation();
-        let selectedList = document.getElementsByClassName('mathSelected')
-        if (selectedList.length === 0) {
-            this.parentNode.children[0].classList.add('mathSelected')
-        } else if (selectedList.length === 1) {
-            selectedList[0].classList.remove('mathSelected')
-            this.parentNode.children[0].classList.add('mathSelected')
-        } else {
-            alert('selected Problem')
-        }
-        editor.setValue(this.parentNode.dataset.commandText)
-        editor.focus();
-    })
-    editStatementButton.addEventListener('click', function (e) {
-        e.stopPropagation();
-        let selectedList = document.getElementsByClassName('mathSelected')
-        if (selectedList.length === 0) {
-            this.parentNode.children[1].classList.add('mathSelected')
-        } else if (selectedList.length === 1) {
-            selectedList[0].classList.remove('mathSelected')
-            this.parentNode.children[1].classList.add('mathSelected')
-        } else {
-            alert('selected Problem')
-        }
-        editor.setValue(this.parentNode.dataset.statementText)
-        editor.focus();
-    })
     appendNewRowButton.addEventListener('click', function (e) {
         e.stopPropagation();
         myLatex.createNewRowContent({ therow: this.parentNode });
@@ -227,8 +193,6 @@ myLatex.createNewRowContent = ({ string = "", therow = document.getElementById("
     newrowContent.appendChild(newStatement)
     newrowContent.appendChild(newOtherContent)
     newrowContent.appendChild(closeButton)
-    newrowContent.appendChild(editCommandButton)
-    newrowContent.appendChild(editStatementButton)
     newrowContent.appendChild(appendNewRowButton)
     newrowContent.appendChild(decBlevelButton)
     newrowContent.appendChild(incBlevelButton)
@@ -454,8 +418,6 @@ myLatex.destructureRows = () => {
 }
 myLatex.addEventListenerOnAllButton = () => {
     let closeButtonList = document.getElementsByClassName('closeButton')
-    let editCommandButton = document.getElementsByClassName('editCommandButton')
-    let editStatementButton = document.getElementsByClassName('editStatementButton')
     let appendNewRowButton = document.getElementsByClassName('appendNewRowButton')
     let incBlevelButton = document.getElementsByClassName('incBlevelButton')
     let decBlevelButton = document.getElementsByClassName('decBlevelButton')
@@ -464,40 +426,6 @@ myLatex.addEventListenerOnAllButton = () => {
         element.addEventListener('click', function (e) {
             e.stopPropagation();
             this.parentNode.remove();
-        })
-    }
-    for (let index = 0; index < editCommandButton.length; index++) {
-        const element = editCommandButton[index];
-        element.addEventListener('click', function (e) {
-            e.stopPropagation();
-            let selectedList = document.getElementsByClassName('mathSelected')
-            if (selectedList.length === 0) {
-                this.parentNode.children[0].classList.add('mathSelected')
-            } else if (selectedList.length === 1) {
-                selectedList[0].classList.remove('mathSelected')
-                this.parentNode.children[0].classList.add('mathSelected')
-            } else {
-                alert('selected Problem')
-            }
-            editor.setValue(this.parentNode.dataset.commandText)
-            editor.focus();
-        })
-    }
-    for (let index = 0; index < editStatementButton.length; index++) {
-        const element = editStatementButton[index];
-        element.addEventListener('click', function (e) {
-            e.stopPropagation();
-            let selectedList = document.getElementsByClassName('mathSelected')
-            if (selectedList.length === 0) {
-                this.parentNode.children[1].classList.add('mathSelected')
-            } else if (selectedList.length === 1) {
-                selectedList[0].classList.remove('mathSelected')
-                this.parentNode.children[1].classList.add('mathSelected')
-            } else {
-                alert('selected Problem')
-            }
-            editor.setValue(this.parentNode.dataset.statementText)
-            editor.focus();
         })
     }
     for (let index = 0; index < appendNewRowButton.length; index++) {

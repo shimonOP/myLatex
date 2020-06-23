@@ -71,11 +71,25 @@
 .command{
     background-color: #F3F3F3;
     width: 6em;
-    text-align: center;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
 }
 .statement{
     background-color: white;
     min-width: 6em;
+    vertical-align: middle;
+}
+.otherContent{
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+    align-items: center; /* 縦方向中央揃え */
+    -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+    justify-content: center; /* 横方向中央揃え */
 }
 .rowContent{
     display: flex;
